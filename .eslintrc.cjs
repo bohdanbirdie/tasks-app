@@ -11,4 +11,7 @@ module.exports = {
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn'
+    }
 };
