@@ -1,0 +1,10 @@
+type TaskItem {
+  id: ID!
+  parentColumnId: ID!
+  title: String!
+  description: String
+}
+
+extend type Query {
+  tasks: [TaskItem!]!
+}

@@ -2,12 +2,12 @@ import React from "react";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { TaskItem } from "@/data/entities";
 import { Item } from "../Item";
+import { TaskItem } from "@/gql/graphql";
 
 const itemStub: TaskItem = {
   id: "1",
-  name: "Item name",
+  title: "Item name",
   parentColumnId: "1",
 };
 
