@@ -3,13 +3,11 @@ import { Column } from "@/components/Column";
 import { useColumnsQuery } from "./tasks.gql.generated";
 
 export const Columns: React.FC = () => {
-  const { data, loading } = useColumnsQuery();
-  console.log("data, loading: ", data, loading);
+  const { data } = useColumnsQuery();
+
   return (
     <div className="flex gap-4">
-      <Column />
-      <Column />
-      <Column />
+      {data?.columns.map((column) => <Column column={column} />)}
       <ModeToggle />
     </div>
   );

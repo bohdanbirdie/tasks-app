@@ -5,6 +5,14 @@ type TaskItem {
   description: String
 }
 
+type TasksColumn {
+  id: ID!
+  title: String!
+  tasks: [TaskItem!]!
+}
+
 extend type Query {
   tasks: [TaskItem!]!
+  columns: [TasksColumn!]!
+  task(id: ID!): TaskItem
 }

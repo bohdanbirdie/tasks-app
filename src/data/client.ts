@@ -1,18 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import * as Types from "../gql/graphql";
-import { tasksStub } from "./stubs";
+import { columnsStub, tasksStub } from "./stubs";
 
 const cache = new InMemoryCache();
-
-const applyTypeName = <T extends { __typename?: F }, F extends string>(
-  data: T,
-  type: F,
-): T => {
-  return {
-    ...data,
-    __typename: type,
-  };
-};
 
 // TODO: add types to the cache
 export const client = new ApolloClient({
@@ -20,7 +10,15 @@ export const client = new ApolloClient({
   resolvers: {
     Query: {
       tasks: (): Types.TaskItem[] => {
-        return tasksStub.map((task) => applyTypeName(task, "TaskItem"));
+        return tasksStub;
+      },
+      columns: (): Partial<Types.TasksColumn>[] => {
+        return columnsStub;
+      },
+    },
+    TasksColumn: {
+      tasks: (parent: Types.TasksColumn): Types.TaskItem[] => {
+        return tasksStub.filter((task) => task.parentColumnId === parent.id);
       },
     },
   },

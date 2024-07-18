@@ -18,7 +18,14 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  columns: Array<TasksColumn>;
+  task?: Maybe<TaskItem>;
   tasks: Array<TaskItem>;
+};
+
+
+export type QueryTaskArgs = {
+  id: Scalars['ID']['input'];
 };
 
 export type TaskItem = {
@@ -29,10 +36,17 @@ export type TaskItem = {
   title: Scalars['String']['output'];
 };
 
-export type TasksQueryVariables = Exact<{ [key: string]: never; }>;
+export type TasksColumn = {
+  __typename?: 'TasksColumn';
+  id: Scalars['ID']['output'];
+  tasks: Array<TaskItem>;
+  title: Scalars['String']['output'];
+};
+
+export type ColumnsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'TaskItem', id: string, title: string, description?: string | null, parentColumnId: string }> };
+export type ColumnsQuery = { __typename?: 'Query', columns: Array<{ __typename?: 'TasksColumn', id: string, title: string, tasks: Array<{ __typename?: 'TaskItem', id: string, title: string, description?: string | null, parentColumnId: string }> }> };
 
 
-export const TasksDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Tasks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tasks"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"client"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"parentColumnId"}}]}}]}}]} as unknown as DocumentNode<TasksQuery, TasksQueryVariables>;
+export const ColumnsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"columns"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"client"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"tasks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"parentColumnId"}}]}}]}}]}}]} as unknown as DocumentNode<ColumnsQuery, ColumnsQueryVariables>;

@@ -1,12 +1,16 @@
 import { gql } from "@apollo/client";
 
-export const tasksQuery = gql`
-  query Tasks {
-    tasks @client {
+export const columnsQuery = gql`
+  query Columns {
+    columns @client {
       id
       title
-      description
-      parentColumnId
+      tasks {
+        id
+        title
+        description
+        parentColumnId
+      }
     }
   }
 `;
