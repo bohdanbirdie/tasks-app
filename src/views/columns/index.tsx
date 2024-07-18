@@ -1,9 +1,9 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Column } from "@/components/Column";
-import { useTasksQuery } from "./tasks.gql.generated";
+import { useColumnsQuery } from "./tasks.gql.generated";
 
 export const Columns: React.FC = () => {
-  const { data, loading } = useTasksQuery();
+  const { data, loading } = useColumnsQuery();
   console.log("data, loading: ", data, loading);
   return (
     <div className="flex gap-4">
